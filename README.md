@@ -1,10 +1,15 @@
-# SalesPulse AI - Autonomous E-Commerce Conversational & Upsell Agent
+# SalesPulse AI Agent 🚀
 
-SalesPulse AI is an agentic sales assistant built to reduce cart abandonment and drive e-commerce conversions using retrieval-augmented generation and autonomous function execution.
+SalesPulse AI Agent is an AI-powered conversational and analytics service designed to process sales workflows and dynamic interactions using Node.js, Express, and OpenAI integrations.
 
-## Setup Instructions
+## 🛠️ Tech Stack
+- **Backend:** Node.js, Express.js
+- **AI/LLM Integration:** OpenAI API
+- **Version Control:** Git, GitHub
+
+## 🚀 Quick Start
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/salespulse-ai-agent.git](https://github.com/your-username/salespulse-ai-agent.git)
+   git clone [https://github.com/Chhaviv08304/salespulse-ai-agent.git](https://github.com/Chhaviv08304/salespulse-ai-agent.git)
    cd salespulse-ai-agent
