@@ -26,11 +26,21 @@ Your goals:
 3. Keep responses concise, friendly, and conversion-focused.
 `;
 
+// Root Route to fix "Cannot GET /" on Vercel
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: "SalesPulse AI Agent API is up and running!",
+    status: "success",
+    endpoints: {
+      chat: "POST /api/chat"
+    }
+  });
+});
+
 app.post('/api/chat', async (req, res) => {
   const { message, cart } = req.body;
 
   try {
-    // Attempt live OpenAI completion
     const contextPrompt = `Current Live Catalog: ${JSON.stringify(PRODUCTS)}\nUser Cart State: ${JSON.stringify(cart || [])}`;
 
     const response = await openai.chat.completions.create({
@@ -75,7 +85,6 @@ app.post('/api/chat', async (req, res) => {
     return res.json({ reply: responseMessage.content });
 
   } catch (error) {
-    // Mock fallback when API Key is missing or invalid
     const lowerMsg = (message || '').toLowerCase();
     
     if (lowerMsg.includes('discount') || lowerMsg.includes('expensive') || lowerMsg.includes('price')) {
@@ -92,4 +101,9 @@ app.post('/api/chat', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`SalesPulse AI Server running on port ${PORT}`));
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`SalesPulse AI Server running on port ${PORT}`));
+}
+
+module.exports = app;
